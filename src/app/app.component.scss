@@ -1,0 +1,36 @@
+.todo-app {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.todo-list li {
+  display: flex; /* Встановлюємо контейнер як flex */
+  align-items: center; /* Вирівнюємо текст по вертикалі */
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc; /* Опціонально: розділові лінії */
+}
+
+.todo-list button {
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

@@ -1,13 +1,30 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { addTodo, deleteTodo } from './state/todo.actions';
+import { Todo } from './state/todo.state';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'todo-app';
+  newTodo: string = ''; // Поле для нового завдання
+  todos$: Observable<Todo[]>; // Стейт задач
+
+  constructor(private store: Store<{ todos: { todos: Todo[] } }>) {
+    this.todos$ = this.store.select((state) => state.todos.todos);
+  }
+
+  addTodo(): void {
+    if (this.newTodo.trim()) {
+      this.store.dispatch(addTodo({ title: this.newTodo })); // Додаємо нове завдання
+      this.newTodo = '';
+    }
+  }
+
+  deleteTodo(index: number): void {
+    this.store.dispatch(deleteTodo({ index })); // Видаляємо завдання за індексом
+  }
 }
