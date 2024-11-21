@@ -4,6 +4,8 @@ import { initialState } from './todo.state';
 
 export const todoReducer = createReducer(
   initialState,
+
+  // Додавання нової задачі
   on(addTodo, (state, { title }) => ({
     ...state,
     todos: [
@@ -11,6 +13,8 @@ export const todoReducer = createReducer(
       { userId: 1, id: state.todos.length + 1, title, completed: false },
     ],
   })),
+
+  // Видалення задачі за індексом
   on(deleteTodo, (state, { index }) => ({
     ...state,
     todos: state.todos.filter((_, i) => i !== index),

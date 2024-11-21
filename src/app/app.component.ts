@@ -10,21 +10,23 @@ import { Todo } from './state/todo.state';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  newTodo: string = ''; // Поле для нового завдання
-  todos$: Observable<Todo[]>; // Стейт задач
+  todos$: Observable<Todo[]>; // Потік для задач
+  newTodo: string = ''; // Поле для нової задачі
 
   constructor(private store: Store<{ todos: { todos: Todo[] } }>) {
-    this.todos$ = this.store.select((state) => state.todos.todos);
+    this.todos$ = this.store.select((state) => state.todos.todos); // Підписка на задачі
   }
 
-  addTodo(): void {
+  // Додавання задачі
+  addTodo() {
     if (this.newTodo.trim()) {
-      this.store.dispatch(addTodo({ title: this.newTodo })); // Додаємо нове завдання
+      this.store.dispatch(addTodo({ title: this.newTodo }));
       this.newTodo = '';
     }
   }
 
-  deleteTodo(index: number): void {
-    this.store.dispatch(deleteTodo({ index })); // Видаляємо завдання за індексом
+  // Видалення задачі
+  deleteTodo(index: number) {
+    this.store.dispatch(deleteTodo({ index }));
   }
 }

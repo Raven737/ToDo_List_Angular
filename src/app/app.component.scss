@@ -1,36 +1,63 @@
 .todo-app {
-  font-family: Arial, sans-serif;
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.todo-input {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
 }
 
-.todo-list {
-  list-style: none;
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 300px;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+button {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
   padding: 0;
-  text-align: left;
 }
 
-.todo-list li {
-  display: flex; /* Встановлюємо контейнер як flex */
-  align-items: center; /* Вирівнюємо текст по вертикалі */
+li {
+  display: flex;
   justify-content: space-between;
-  padding: 5px 0;
-  border-bottom: 1px solid #ccc; /* Опціонально: розділові лінії */
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 500px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
-.todo-list button {
+li button {
   background-color: red;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
   padding: 5px 10px;
-  border-radius: 5px;
 }
