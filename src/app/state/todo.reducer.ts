@@ -1,11 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
-import { addTodo, deleteTodo } from './todo.actions';
+import {
+  addTodo,
+  deleteTodo,
+  loadTodos,
+  loadTodosSuccess,
+  loadTodosFailure,
+} from './todo.actions';
 import { initialState } from './todo.state';
 
 export const todoReducer = createReducer(
   initialState,
 
-  // Додавання нової задачі
   on(addTodo, (state, { title }) => ({
     ...state,
     todos: [
@@ -14,9 +19,27 @@ export const todoReducer = createReducer(
     ],
   })),
 
-  // Видалення задачі за індексом
   on(deleteTodo, (state, { index }) => ({
     ...state,
     todos: state.todos.filter((_, i) => i !== index),
+  })),
+
+  on(loadTodos, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+
+  on(loadTodosSuccess, (state, { todos }) => ({
+    ...state,
+    todos,
+    loading: false,
+    error: null,
+  })),
+
+  on(loadTodosFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );

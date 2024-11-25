@@ -1,13 +1,12 @@
-<div class="todo-app">
-  <h1>ToDo List</h1>
-  <div class="input-container">
-    <input [(ngModel)]="newTodo" placeholder="Enter a task" />
-    <button (click)="addTodo()">Add</button>
-  </div>
-  <ul>
-    <li *ngFor="let todo of todos$ | async; let i = index">
-      {{ todo.title }}
-      <button (click)="deleteTodo(i)">Delete</button>
-    </li>
-  </ul>
+<div *ngIf="loading$ | async" class="loading">Завантаження...</div>
+<div *ngIf="error$ | async" class="error">Помилка: {{ error$ | async }}</div>
+<div>
+  <input [(ngModel)]="newTodo" placeholder="Нова задача" />
+  <button (click)="addTodo()">Додати</button>
 </div>
+<ul>
+  <li *ngFor="let todo of todos$ | async; let i = index">
+    {{ todo.title }} - {{ todo.completed ? "Виконано" : "Не виконано" }}
+    <button (click)="deleteTodo(i)">Видалити</button>
+  </li>
+</ul>
